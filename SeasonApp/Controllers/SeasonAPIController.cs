@@ -18,20 +18,27 @@ namespace SeasonApp.Controllers
         /// <param name="temperature">The temperature in degrees C</param>
         /// <example>
         ///     GET api/SeasonAPI/GetSeason/21	->
-        ///     ["Summer","Sean O.","https://unsplash.com/photos/KMn4VEeEPR8"]
+        ///     Season.SeasonName = "Summer"
+        ///     Season.PhotographerName = "Sean O."
+        ///     Season.ImageURL = "https://unsplash.com/photos/KMn4VEeEPR8"
         /// </example>
         /// <example>
         ///     GET api/SeasonAPI/GetSeason/17	->
-        ///     ["Fall","Jeremy Thomas","https://unsplash.com/photos/O6N9RV2rzX8"]
+        ///     Season.SeasonName = "Fall"
+        ///     Season.PhotographerName = "Jeremy Thomas"
+        ///     Season.ImageURL = "https://unsplash.com/photos/O6N9RV2rzX8"
         /// </example>
         /// <example>
         ///     GET api/SeasonAPI/GetSeason/-15	-> 
-        ///     ["Winter","Bob Canning","https://unsplash.com/photos/r53rNKb_7s8"]
+        ///     Season.SeasonName = "Winter"
+        ///     Season.PhotographerName = "Bob Canning"
+        ///     Season.ImageURL = "https://unsplash.com/photos/r53rNKb_7s8"     
         /// </example>
         /// <returns>
-        ///     The associated season with the temperature,
-        ///     The associated photographer for the image we are using,
-        ///     The original image URL we are using
+        /// A season object, containing properties including
+        ///     SeasonName: The associated season with the temperature,
+        ///     PhotographerName: The associated photographer for the image we are using,
+        ///     ImageURL: The original image URL we are using
         /// </returns>
         [Route("api/SeasonAPI/GetSeason/{temperature}")]
         public Season GetSeason(int? temperature)
