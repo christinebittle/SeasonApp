@@ -13,5 +13,6 @@ namespace SeasonApp.Models
         public string ImageURL;
         
 
+
     }
 }
