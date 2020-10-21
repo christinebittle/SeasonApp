@@ -11,7 +11,7 @@ namespace SeasonApp.Models
         public string SeasonName;
         public string PhotographerName;
         public string ImageURL;
-        
+        public int Temperature;
 
 
     }

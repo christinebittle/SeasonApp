@@ -21,16 +21,9 @@ namespace SeasonApp.Controllers
         [HttpPost]
         public ActionResult Show(int? temperature)
         {
-            if (temperature == null) ViewBag.Temp = "unknown";
-            else ViewBag.Temp = temperature;
-
             //we will to gather the season information from the temperature provided
             SeasonAPIController controller = new SeasonAPIController();
-            Season SeasonInfo = controller.GetSeason(temperature);
-
-            
-            
-            
+            Season SeasonInfo = controller.GetSeason(temperature);               
             return View(SeasonInfo);
         }
       

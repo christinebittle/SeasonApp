@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using SeasonApp.Models;
+using System.Web.Http.Cors;
 
 
 namespace SeasonApp.Controllers
@@ -21,18 +22,21 @@ namespace SeasonApp.Controllers
         ///     Season.SeasonName = "Summer"
         ///     Season.PhotographerName = "Sean O."
         ///     Season.ImageURL = "https://unsplash.com/photos/KMn4VEeEPR8"
+        ///     Season.Temperature = 21
         /// </example>
         /// <example>
         ///     GET api/SeasonAPI/GetSeason/17	->
         ///     Season.SeasonName = "Fall"
         ///     Season.PhotographerName = "Jeremy Thomas"
         ///     Season.ImageURL = "https://unsplash.com/photos/O6N9RV2rzX8"
+        ///     Season.Temperature = 17
         /// </example>
         /// <example>
         ///     GET api/SeasonAPI/GetSeason/-15	-> 
         ///     Season.SeasonName = "Winter"
         ///     Season.PhotographerName = "Bob Canning"
         ///     Season.ImageURL = "https://unsplash.com/photos/r53rNKb_7s8"     
+        ///     Season.Temperature = -15
         /// </example>
         /// <returns>
         /// A season object, containing properties including
@@ -41,16 +45,29 @@ namespace SeasonApp.Controllers
         ///     ImageURL: The original image URL we are using
         /// </returns>
         [Route("api/SeasonAPI/GetSeason/{temperature}")]
+        [EnableCors(origins:"*", methods:"*", headers:"*")]
         public Season GetSeason(int? temperature)
         {
+            Season SeasonInfo = new Season();
             string season = "";
             string author = "";
             string img = "";
+            
             if (temperature == null) {
                 season = "unknown";
                 author = "unknown";
                 img = "unknown";
+
+                
+                SeasonInfo.SeasonName = season;
+                SeasonInfo.PhotographerName = author;
+                SeasonInfo.ImageURL = img;
+                SeasonInfo.Temperature = (int)temperature;
+
+                return SeasonInfo;
             }
+            
+            
 
             if (temperature > 20)
             {
@@ -77,11 +94,11 @@ namespace SeasonApp.Controllers
                 img = "https://unsplash.com/photos/r53rNKb_7s8";
             }
 
-            Season SeasonInfo = new Season();
+            
             SeasonInfo.SeasonName = season;
             SeasonInfo.PhotographerName = author;
             SeasonInfo.ImageURL = img;
-            
+            SeasonInfo.Temperature = (int)temperature;
 
 
             return SeasonInfo;
