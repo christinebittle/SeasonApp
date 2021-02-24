@@ -1,6 +1,6 @@
 # SeasonApp
 
-This application will take an input of the temperature and output a webpage associated with the season.
+This application will take an input of the temperature and output a webpage associated with the season. 
 
 Key Files in this Project:
 - Models/Season.cs. A class which holds information about a season, including the season name and associated image.
