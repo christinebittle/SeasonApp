@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Diagnostics;
+using SeasonApp.Models;
 
 namespace SeasonApp.Controllers
 {
@@ -14,18 +16,29 @@ namespace SeasonApp.Controllers
             return View();
         }
 
-        // GET: Course/Show
-        public ActionResult Show()
+        // GET: Course/Show?CourseCode
+        public ActionResult Show(int CourseCode)
         {
-            //objective: pass information about the course name and course code to the Show.cshtml
+            //objective: receive the course code from the form and render a new page with the relevant course information
 
-            string CourseName = "Web Application Development";
-            string CourseDesc = "Learning how to build server rendered pages that connect to a database";
+            Debug.WriteLine("The course code information that I've pulled is "+CourseCode);
 
-            ViewData["CourseName"] = CourseName;
-            ViewData["CourseDesc"] = CourseDesc;
+            //Instantiating the CourseAPI Controller
+            CourseAPIController controller = new CourseAPIController();
 
-            return View();
+            //Access the logic from our CourseAPI controller
+            Course CourseInfo = controller.GetCourse(CourseCode);
+
+            //Course Name
+            Debug.WriteLine(CourseInfo.CourseName);
+            Debug.WriteLine(CourseInfo.CourseDesc);
+          
+
+            //ViewData["CourseName"] = CourseInfo.CourseName;
+            //ViewData["CourseDesc"] = CourseInfo.CourseDesc;
+            //ViewData["CourseCode"] = CourseCode;
+
+            return View(CourseInfo);
         }
     }
 }
